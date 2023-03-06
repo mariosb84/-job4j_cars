@@ -75,8 +75,8 @@ public class UserRepository {
      */
     public List<User> findAllOrderById() {
         Session session = sf.openSession();
-        Query<User> query = session.
-                createQuery("from User order by id");
+        Query<User> query = session.createQuery(
+                "from User order by id");
         return new ArrayList<>(query.list());
     }
 
@@ -100,8 +100,8 @@ public class UserRepository {
     public List<User> findByLikeLogin(String key) {
         Session session = sf.openSession();
         Query<User> query = session.createQuery(
-                "from User as u where u.login LIKE 'key%' ", User.class);
-       /* query.setParameter("'key%'", key); */
+                "from User as u where u.login LIKE : key ", User.class);
+        query.setParameter("key", "%" + key + "%");
         return new ArrayList<>(query.list());
     }
 
