@@ -28,6 +28,7 @@ public class UserRepository {
         } catch (Exception e) {
             session.getTransaction().rollback();
         }
+        session.close();
         return user;
     }
 
@@ -49,6 +50,7 @@ public class UserRepository {
         } catch (Exception e) {
            session.getTransaction().rollback();
         }
+        session.close();
     }
 
     /**
@@ -67,6 +69,7 @@ public class UserRepository {
         } catch (Exception e) {
             session.getTransaction().rollback();
         }
+        session.close();
     }
 
     /**
@@ -75,9 +78,13 @@ public class UserRepository {
      */
     public List<User> findAllOrderById() {
         Session session = sf.openSession();
-        Query<User> query = session.createQuery(
+        session.beginTransaction();
+        org.hibernate.query.Query query = session.createQuery(
                 "from User order by id");
-        return new ArrayList<>(query.list());
+        ArrayList<User> result = new ArrayList<User>(query.list());
+        session.getTransaction().commit();
+        session.close();
+        return result;
     }
 
     /**
@@ -86,10 +93,14 @@ public class UserRepository {
      */
     public Optional<User> findById(int id) {
         Session session = sf.openSession();
-        Query<User> query = session.createQuery(
+        session.beginTransaction();
+        org.hibernate.query.Query<User> query = session.createQuery(
                 "from User as u where u.id = :fId", User.class);
         query.setParameter("fId", id);
-        return Optional.ofNullable(query.uniqueResult());
+        Optional<User> result = query.uniqueResultOptional();
+        session.getTransaction().commit();
+        session.close();
+        return result;
     }
 
     /**
@@ -99,10 +110,14 @@ public class UserRepository {
      */
     public List<User> findByLikeLogin(String key) {
         Session session = sf.openSession();
-        Query<User> query = session.createQuery(
+        session.beginTransaction();
+        org.hibernate.query.Query query = session.createQuery(
                 "from User as u where u.login LIKE : key ", User.class);
         query.setParameter("key", "%" + key + "%");
-        return new ArrayList<>(query.list());
+        ArrayList<User> result = new ArrayList<User>(query.list());
+        session.getTransaction().commit();
+        session.close();
+        return result;
     }
 
     /**
@@ -112,9 +127,13 @@ public class UserRepository {
      */
     public Optional<User> findByLogin(String login) {
         Session session = sf.openSession();
-        Query<User> query = session.createQuery(
+        session.beginTransaction();
+        org.hibernate.query.Query<User> query = session.createQuery(
                 "from User as u where u.login = :fLogin", User.class);
         query.setParameter("fLogin", login);
-        return Optional.ofNullable(query.uniqueResult());
+        Optional<User> result = query.uniqueResultOptional();
+        session.getTransaction().commit();
+        session.close();
+        return result;
     }
 }
