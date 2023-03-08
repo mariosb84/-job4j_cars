@@ -15,6 +15,7 @@ public class UserRepository {
 
     /**
      * Сохранить в базе.
+     *
      * @param user пользователь.
      * @return пользователь с id.
      */
@@ -34,12 +35,13 @@ public class UserRepository {
 
     /**
      * Обновить в базе пользователя.
+     *
      * @param user пользователь.
      */
     public void update(User user) {
         Session session = sf.openSession();
         try {
-           session.beginTransaction();
+            session.beginTransaction();
             session.createQuery(
                     "UPDATE User SET login = :fLogin, password = : fPassword WHERE id = :fId")
                     .setParameter("fLogin", user.getLogin())
@@ -48,7 +50,7 @@ public class UserRepository {
                     .executeUpdate();
             session.getTransaction().commit();
         } catch (Exception e) {
-           session.getTransaction().rollback();
+            session.getTransaction().rollback();
         } finally {
             session.close();
         }
@@ -56,6 +58,7 @@ public class UserRepository {
 
     /**
      * Удалить пользователя по id.
+     *
      * @param userId ID
      */
     public void delete(int userId) {
@@ -66,7 +69,7 @@ public class UserRepository {
                     "DELETE User WHERE id = :fId")
                     .setParameter("fId", userId)
                     .executeUpdate();
-          session.getTransaction().commit();
+            session.getTransaction().commit();
         } catch (Exception e) {
             session.getTransaction().rollback();
         } finally {
@@ -76,17 +79,18 @@ public class UserRepository {
 
     /**
      * Список пользователь отсортированных по id.
+     *
      * @return список пользователей.
      */
     public List<User> findAllOrderById() {
         ArrayList<User> result = new ArrayList<>();
         Session session = sf.openSession();
         try {
-        session.beginTransaction();
-        org.hibernate.query.Query query = session.createQuery(
-                "from User order by id");
-        result = new ArrayList<User>(query.list());
-        session.getTransaction().commit();
+            session.beginTransaction();
+            org.hibernate.query.Query query = session.createQuery(
+                    "from User order by id");
+            result = new ArrayList<User>(query.list());
+            session.getTransaction().commit();
         } catch (Exception e) {
             session.getTransaction().rollback();
         } finally {
@@ -97,18 +101,19 @@ public class UserRepository {
 
     /**
      * Найти пользователя по ID
+     *
      * @return пользователь.
      */
     public Optional<User> findById(int id) {
         Optional<User> result = Optional.empty();
         Session session = sf.openSession();
         try {
-        session.beginTransaction();
-        org.hibernate.query.Query<User> query = session.createQuery(
-                "from User as u where u.id = :fId", User.class);
-        query.setParameter("fId", id);
-        result = query.uniqueResultOptional();
-        session.getTransaction().commit();
+            session.beginTransaction();
+            org.hibernate.query.Query<User> query = session.createQuery(
+                    "from User as u where u.id = :fId", User.class);
+            query.setParameter("fId", id);
+            result = query.uniqueResultOptional();
+            session.getTransaction().commit();
         } catch (Exception e) {
             session.getTransaction().rollback();
         } finally {
@@ -119,6 +124,7 @@ public class UserRepository {
 
     /**
      * Список пользователей по login LIKE %key%
+     *
      * @param key key
      * @return список пользователей.
      */
@@ -126,12 +132,12 @@ public class UserRepository {
         ArrayList<User> result = new ArrayList<>();
         Session session = sf.openSession();
         try {
-        session.beginTransaction();
-        org.hibernate.query.Query query = session.createQuery(
-                "from User as u where u.login LIKE : key ", User.class);
-        query.setParameter("key", "%" + key + "%");
-        result = new ArrayList<User>(query.list());
-        session.getTransaction().commit();
+            session.beginTransaction();
+            org.hibernate.query.Query query = session.createQuery(
+                    "from User as u where u.login LIKE : key ", User.class);
+            query.setParameter("key", "%" + key + "%");
+            result = new ArrayList<User>(query.list());
+            session.getTransaction().commit();
         } catch (Exception e) {
             session.getTransaction().rollback();
         } finally {
@@ -142,6 +148,7 @@ public class UserRepository {
 
     /**
      * Найти пользователя по login.
+     *
      * @param login login.
      * @return Optional or user.
      */
@@ -149,12 +156,12 @@ public class UserRepository {
         Optional<User> result = Optional.empty();
         Session session = sf.openSession();
         try {
-        session.beginTransaction();
-        org.hibernate.query.Query<User> query = session.createQuery(
-                "from User as u where u.login = :fLogin", User.class);
-        query.setParameter("fLogin", login);
-        result = query.uniqueResultOptional();
-        session.getTransaction().commit();
+            session.beginTransaction();
+            org.hibernate.query.Query<User> query = session.createQuery(
+                    "from User as u where u.login = :fLogin", User.class);
+            query.setParameter("fLogin", login);
+            result = query.uniqueResultOptional();
+            session.getTransaction().commit();
         } catch (Exception e) {
             session.getTransaction().rollback();
         } finally {
