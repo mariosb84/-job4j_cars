@@ -1,7 +1,6 @@
 package ru.job4j.model.repository;
 
 import lombok.AllArgsConstructor;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import ru.job4j.model.User;
@@ -27,8 +26,9 @@ public class UserRepository {
             session.getTransaction().commit();
         } catch (Exception e) {
             session.getTransaction().rollback();
+        } finally {
+            session.close();
         }
-        session.close();
         return user;
     }
 
@@ -49,8 +49,9 @@ public class UserRepository {
             session.getTransaction().commit();
         } catch (Exception e) {
            session.getTransaction().rollback();
+        } finally {
+            session.close();
         }
-        session.close();
     }
 
     /**
@@ -68,8 +69,9 @@ public class UserRepository {
           session.getTransaction().commit();
         } catch (Exception e) {
             session.getTransaction().rollback();
+        } finally {
+            session.close();
         }
-        session.close();
     }
 
     /**
@@ -77,13 +79,19 @@ public class UserRepository {
      * @return список пользователей.
      */
     public List<User> findAllOrderById() {
+        ArrayList<User> result = new ArrayList<>();
         Session session = sf.openSession();
+        try {
         session.beginTransaction();
         org.hibernate.query.Query query = session.createQuery(
                 "from User order by id");
-        ArrayList<User> result = new ArrayList<User>(query.list());
+        result = new ArrayList<User>(query.list());
         session.getTransaction().commit();
-        session.close();
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+        } finally {
+            session.close();
+        }
         return result;
     }
 
@@ -92,14 +100,20 @@ public class UserRepository {
      * @return пользователь.
      */
     public Optional<User> findById(int id) {
+        Optional<User> result = Optional.empty();
         Session session = sf.openSession();
+        try {
         session.beginTransaction();
         org.hibernate.query.Query<User> query = session.createQuery(
                 "from User as u where u.id = :fId", User.class);
         query.setParameter("fId", id);
-        Optional<User> result = query.uniqueResultOptional();
+        result = query.uniqueResultOptional();
         session.getTransaction().commit();
-        session.close();
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+        } finally {
+            session.close();
+        }
         return result;
     }
 
@@ -109,14 +123,20 @@ public class UserRepository {
      * @return список пользователей.
      */
     public List<User> findByLikeLogin(String key) {
+        ArrayList<User> result = new ArrayList<>();
         Session session = sf.openSession();
+        try {
         session.beginTransaction();
         org.hibernate.query.Query query = session.createQuery(
                 "from User as u where u.login LIKE : key ", User.class);
         query.setParameter("key", "%" + key + "%");
-        ArrayList<User> result = new ArrayList<User>(query.list());
+        result = new ArrayList<User>(query.list());
         session.getTransaction().commit();
-        session.close();
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+        } finally {
+            session.close();
+        }
         return result;
     }
 
@@ -126,14 +146,21 @@ public class UserRepository {
      * @return Optional or user.
      */
     public Optional<User> findByLogin(String login) {
+        Optional<User> result = Optional.empty();
         Session session = sf.openSession();
+        try {
         session.beginTransaction();
         org.hibernate.query.Query<User> query = session.createQuery(
                 "from User as u where u.login = :fLogin", User.class);
         query.setParameter("fLogin", login);
-        Optional<User> result = query.uniqueResultOptional();
+        result = query.uniqueResultOptional();
         session.getTransaction().commit();
-        session.close();
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+        } finally {
+            session.close();
+        }
         return result;
     }
+
 }
