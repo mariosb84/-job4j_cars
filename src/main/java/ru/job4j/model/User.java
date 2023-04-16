@@ -1,31 +1,27 @@
 package ru.job4j.model;
 
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "auto_user")
 @Data
-
+@AllArgsConstructor
+@NoArgsConstructor
+@RequiredArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NonNull
+    @Setter
+    @Getter
     private int id;
+    @Setter
+    @Getter
     private String login;
+    @Setter
+    @Getter
     private String password;
-
-    public User() {
-    }
-
-    public User(int id) {
-        this.id = id;
-    }
-
-    public User(int id, String login, String password) {
-        this.id = id;
-        this.login = login;
-        this.password = password;
-    }
 }
