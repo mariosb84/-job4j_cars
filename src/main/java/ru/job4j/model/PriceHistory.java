@@ -4,8 +4,6 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "PRICE_HISTORY")
@@ -29,7 +27,4 @@ public class PriceHistory {
     @Setter
     @Getter
     private LocalDateTime created;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "post_id")
-    private List<Post> posts = new ArrayList<>();
 }
