@@ -5,8 +5,8 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import ru.job4j.model.User;
-import ru.job4j.repository.CrudRepository;
-import ru.job4j.repository.UserRepository;
+import ru.job4j.repository.HibernateCrudRepository;
+import ru.job4j.repository.HibernateUserRepository;
 
 public class UserUsage {
     public static void main(String[] args) {
@@ -15,7 +15,7 @@ public class UserUsage {
         try (SessionFactory sf = new MetadataSources(registry)
                 .buildMetadata().buildSessionFactory()) {
            /* var userRepository = new UserRepository(sf);*/
-            var userRepository = new UserRepository((CrudRepository) sf);
+            var userRepository = new HibernateUserRepository((HibernateCrudRepository) sf);
             var user = new User();
             user.setLogin("admin");
             user.setPassword("admin");
