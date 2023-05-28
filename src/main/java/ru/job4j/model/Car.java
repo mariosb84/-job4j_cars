@@ -3,7 +3,9 @@ package ru.job4j.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -35,4 +37,9 @@ public class Car {
             inverseJoinColumns = {
                     @JoinColumn(name = "owner_id", nullable = false, updatable = false)})
     private Set<Owner> owners = new HashSet<>();
+    @Setter
+    @Getter
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "car_hist_id")
+    private List<Owner> ownerHistories = new ArrayList<>();
 }

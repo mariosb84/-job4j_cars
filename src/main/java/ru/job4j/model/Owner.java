@@ -3,8 +3,8 @@ package ru.job4j.model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "owners")
@@ -30,11 +30,8 @@ public class Owner {
     private User user;
     @Setter
     @Getter
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "history", joinColumns = {
-            @JoinColumn(name = "owner_id", nullable = false, updatable = false)},
-            inverseJoinColumns = {
-                    @JoinColumn(name = "car_id", nullable = false, updatable = false)})
-    private Set<Car> cars = new HashSet<>();
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "owner_hist_id")
+    private List<Car> carHistories = new ArrayList<>();
 
 }
