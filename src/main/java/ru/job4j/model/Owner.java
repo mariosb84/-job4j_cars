@@ -28,10 +28,5 @@ public class Owner {
     @ManyToOne
     @JoinColumn(name = "auto_user_id")
     private User user;
-    @Setter
-    @Getter
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "owner_hist_id")
-    private List<Car> carHistories = new ArrayList<>();
 
 }
