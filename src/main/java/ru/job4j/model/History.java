@@ -23,14 +23,5 @@ public class History {
     @Setter
     @Getter
     private LocalDateTime endAt;
-    @Setter
-    @Getter
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "owner_hist_id")
-    private List<History> ownerHistories = new ArrayList<>();
-    @Setter
-    @Getter
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "car_hist_id")
-    private List<History> carHistories = new ArrayList<>();
+
 }

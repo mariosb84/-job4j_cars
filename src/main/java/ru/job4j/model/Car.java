@@ -37,5 +37,10 @@ public class Car {
             inverseJoinColumns = {
                     @JoinColumn(name = "owner_id", nullable = false, updatable = false)})
     private Set<Owner> owners = new HashSet<>();
+    @Setter
+    @Getter
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "car_hist_id")
+    private List<History> carHistories = new ArrayList<>();
 
 }
