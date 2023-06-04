@@ -4,10 +4,10 @@ import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 public class History {
 

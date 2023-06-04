@@ -50,4 +50,7 @@ public class Post {
     @ManyToOne
     @JoinColumn(name = "car_id ")
     private Car car;
+    @Setter
+    @Getter
+    private byte[] photo;
 }
