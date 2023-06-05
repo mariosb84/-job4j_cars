@@ -3,6 +3,7 @@ package ru.job4j.repository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 import ru.job4j.model.Post;
+import ru.job4j.utilites.DateTime;
 
 import java.util.List;
 import java.util.Map;
@@ -63,14 +64,14 @@ public class HibernatePostRepository implements PostRepository {
     }
 
     /**
-     * Список posts по car.name LIKE %key%
+     * Список posts по car.name == key
      * @param key key
      * @return список posts.
      */
     public List<Post> findByLikeModelCar(String key) {
         return hibernateCrudRepository.query(
-                "from Post as post where post.car.name like :fKey", Post.class,
-                Map.of("fKey", "%" + key + "%")
+                "from Post as post where post.car.name = :fKey", Post.class,
+                Map.of("fKey", key)
         );
     }
 
@@ -89,7 +90,9 @@ public class HibernatePostRepository implements PostRepository {
      */
     public List<Post> findByDateLastDay() {
         return hibernateCrudRepository.query(
-                "from Post as post where post.created BETWEEN  DATE_SUB(current_date(), INTERVAL 1 DAY) AND current_date()", Post.class);
+                "from Post as post where post.created >= fDate", Post.class,
+                Map.of("fDate", DateTime.getDateTimeLastDay())
+        );
     }
 
 }

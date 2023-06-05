@@ -52,5 +52,7 @@ public class Post {
     private Car car;
     @Setter
     @Getter
-    private byte[] photo;
+    @ManyToOne
+    @JoinColumn(name = "photo_id ", foreignKey = @ForeignKey(name = "PHOTO_ID_FK"))
+    private File photo;
 }
