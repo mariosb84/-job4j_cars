@@ -14,7 +14,6 @@ import java.util.Optional;
 public class HibernatePostRepository implements PostRepository {
 
     private final HibernateCrudRepository hibernateCrudRepository;
-    private final LocalDateTime getDateTimeLastDay = LocalDateTime.now().minusHours(24);
 
     /**
      * Сохранить в базе.
@@ -92,7 +91,7 @@ public class HibernatePostRepository implements PostRepository {
     public List<Post> findByDateLastDay() {
         return hibernateCrudRepository.query(
                 "from Post as post where post.created >= fDate", Post.class,
-                Map.of("fDate", getDateTimeLastDay)
+                Map.of("fDate", LocalDateTime.now().minusHours(24))
         );
     }
 
