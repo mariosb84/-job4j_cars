@@ -3,8 +3,8 @@ package ru.job4j.repository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 import ru.job4j.model.Post;
-import ru.job4j.utilites.DateTime;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -14,6 +14,7 @@ import java.util.Optional;
 public class HibernatePostRepository implements PostRepository {
 
     private final HibernateCrudRepository hibernateCrudRepository;
+    private final LocalDateTime getDateTimeLastDay = LocalDateTime.now().minusHours(24);
 
     /**
      * Сохранить в базе.
@@ -91,7 +92,7 @@ public class HibernatePostRepository implements PostRepository {
     public List<Post> findByDateLastDay() {
         return hibernateCrudRepository.query(
                 "from Post as post where post.created >= fDate", Post.class,
-                Map.of("fDate", DateTime.getDateTimeLastDay())
+                Map.of("fDate", getDateTimeLastDay)
         );
     }
 
