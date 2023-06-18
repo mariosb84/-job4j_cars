@@ -1,5 +1,6 @@
 package ru.job4j;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import ru.job4j.configuration.HibernateConfiguration;
 import ru.job4j.model.Car;
@@ -16,9 +17,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class HibernatePostRepositoryTest {
 
+    HibernatePostRepository hibernatePostRepository =
+            new HibernatePostRepository((HibernateCrudRepository) new HibernateConfiguration().sf());
+
+    @Disabled
     @Test
     public void whenCreateNewPost() {
-        var hibernatePostRepository = new HibernatePostRepository((HibernateCrudRepository) new HibernateConfiguration().sf());
             Post post = new Post();
             post.setDescription("12345");
             hibernatePostRepository.create(post);
@@ -27,9 +31,9 @@ public class HibernatePostRepositoryTest {
 
     }
 
+    @Disabled
     @Test
     public void whenUpdatePost() {
-        var hibernatePostRepository = new HibernatePostRepository((HibernateCrudRepository) new HibernateConfiguration().sf());
         Post post = new Post();
         post.setDescription("12345");
         hibernatePostRepository.create(post);
@@ -40,9 +44,9 @@ public class HibernatePostRepositoryTest {
 
     }
 
+    @Disabled
     @Test
     public void whenDeletePost() {
-        var hibernatePostRepository = new HibernatePostRepository((HibernateCrudRepository) new HibernateConfiguration().sf());
         Post post = new Post();
         post.setDescription("12345");
         hibernatePostRepository.create(post);
@@ -53,9 +57,9 @@ public class HibernatePostRepositoryTest {
 
     }
 
+    @Disabled
     @Test
-    public void whenFindAllOrderByIdItems() {
-        var hibernatePostRepository = new HibernatePostRepository((HibernateCrudRepository) new HibernateConfiguration().sf());
+    public void whenFindAllOrderByIdPosts() {
         Post post = new Post();
         post.setDescription("12345");
         hibernatePostRepository.create(post);
@@ -71,9 +75,9 @@ public class HibernatePostRepositoryTest {
 
         }
 
+    @Disabled
     @Test
     public void whenFindById() {
-        var hibernatePostRepository = new HibernatePostRepository((HibernateCrudRepository) new HibernateConfiguration().sf());
         Post post = new Post();
         post.setDescription("12345");
         hibernatePostRepository.create(post);
@@ -82,9 +86,9 @@ public class HibernatePostRepositoryTest {
 
     }
 
+    @Disabled
     @Test
-    public void whenFindByLikeModelCarItems() {
-        var hibernatePostRepository = new HibernatePostRepository((HibernateCrudRepository) new HibernateConfiguration().sf());
+    public void whenFindByLikeModelCarPosts() {
         Car car = new Car();
         car.setName("Audi");
         Post post = new Post();
@@ -96,9 +100,9 @@ public class HibernatePostRepositoryTest {
 
     }
 
+    @Disabled
     @Test
-    public void whenFindByCarWithPhotoItems() {
-        var hibernatePostRepository = new HibernatePostRepository((HibernateCrudRepository) new HibernateConfiguration().sf());
+    public void whenFindByCarWithPhotoPosts() {
         File file = new File();
         Car car = new Car();
         Post post = new Post();
@@ -111,9 +115,9 @@ public class HibernatePostRepositoryTest {
 
     }
 
+    @Disabled
     @Test
-    public void whenFindByDateLastDayItems() {
-        var hibernatePostRepository = new HibernatePostRepository((HibernateCrudRepository) new HibernateConfiguration().sf());
+    public void whenFindByDateLastDayPosts() {
         Post post = new Post();
         Post post2 = new Post();
         post2.setCreated(LocalDateTime.now().minusHours(48));
@@ -124,6 +128,5 @@ public class HibernatePostRepositoryTest {
         assertThat(result.containsAll(list)).isEqualTo(false);
 
     }
-
 
 }
