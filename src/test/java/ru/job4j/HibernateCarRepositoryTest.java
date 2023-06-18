@@ -65,7 +65,7 @@ public class HibernateCarRepositoryTest {
         hibernateCarRepository.create(car2);
         Car car3 = new Car();
         car3.setName("chevrolet");
-        hibernateCarRepository.create(car3);;
+        hibernateCarRepository.create(car3);
         List<Car> list = List.of(car, car2, car3);
         List<Car> result = hibernateCarRepository.findAllOrderById();
         assertThat(result.containsAll(list)).isEqualTo(true);

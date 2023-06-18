@@ -62,7 +62,7 @@ public class HibernateUserRepositoryTest {
         hibernateUserRepository.create(user);
         User user2 = new User();
         user2.setLogin("123456");
-        hibernateUserRepository.create(user2);;
+        hibernateUserRepository.create(user2);
         User user3 = new User();
         user3.setLogin("1234567");
         hibernateUserRepository.create(user3);
