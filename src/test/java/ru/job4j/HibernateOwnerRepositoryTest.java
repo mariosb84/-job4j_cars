@@ -1,6 +1,5 @@
 package ru.job4j;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import ru.job4j.configuration.HibernateConfiguration;
 import ru.job4j.model.Owner;
@@ -17,7 +16,6 @@ public class HibernateOwnerRepositoryTest {
     HibernateOwnerRepository hibernateOwnerRepository =
             new HibernateOwnerRepository((HibernateCrudRepository) new HibernateConfiguration().sf());
 
-    @Disabled
     @Test
     public void whenCreateNewOwner() {
         Owner owner = new Owner();
@@ -28,7 +26,6 @@ public class HibernateOwnerRepositoryTest {
 
     }
 
-    @Disabled
     @Test
     public void whenUpdateOwner() {
         Owner owner = new Owner();
@@ -41,7 +38,6 @@ public class HibernateOwnerRepositoryTest {
 
     }
 
-    @Disabled
     @Test
     public void whenDeleteOwner() {
         Owner owner = new Owner();
@@ -54,7 +50,6 @@ public class HibernateOwnerRepositoryTest {
 
     }
 
-    @Disabled
     @Test
     public void whenFindAllOrderByIdOwners() {
         Owner owner = new Owner();
@@ -72,7 +67,6 @@ public class HibernateOwnerRepositoryTest {
 
     }
 
-    @Disabled
     @Test
     public void whenFindById() {
         Owner owner = new Owner();

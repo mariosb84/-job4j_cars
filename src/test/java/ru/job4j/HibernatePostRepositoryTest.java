@@ -1,6 +1,5 @@
 package ru.job4j;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import ru.job4j.configuration.HibernateConfiguration;
 import ru.job4j.model.Car;
@@ -20,7 +19,6 @@ public class HibernatePostRepositoryTest {
     HibernatePostRepository hibernatePostRepository =
             new HibernatePostRepository((HibernateCrudRepository) new HibernateConfiguration().sf());
 
-    @Disabled
     @Test
     public void whenCreateNewPost() {
             Post post = new Post();
@@ -31,7 +29,6 @@ public class HibernatePostRepositoryTest {
 
     }
 
-    @Disabled
     @Test
     public void whenUpdatePost() {
         Post post = new Post();
@@ -44,7 +41,6 @@ public class HibernatePostRepositoryTest {
 
     }
 
-    @Disabled
     @Test
     public void whenDeletePost() {
         Post post = new Post();
@@ -57,7 +53,6 @@ public class HibernatePostRepositoryTest {
 
     }
 
-    @Disabled
     @Test
     public void whenFindAllOrderByIdPosts() {
         Post post = new Post();
@@ -75,7 +70,6 @@ public class HibernatePostRepositoryTest {
 
         }
 
-    @Disabled
     @Test
     public void whenFindById() {
         Post post = new Post();
@@ -86,7 +80,6 @@ public class HibernatePostRepositoryTest {
 
     }
 
-    @Disabled
     @Test
     public void whenFindByLikeModelCarPosts() {
         Car car = new Car();
@@ -100,7 +93,6 @@ public class HibernatePostRepositoryTest {
 
     }
 
-    @Disabled
     @Test
     public void whenFindByCarWithPhotoPosts() {
         File file = new File();
@@ -115,7 +107,6 @@ public class HibernatePostRepositoryTest {
 
     }
 
-    @Disabled
     @Test
     public void whenFindByDateLastDayPosts() {
         Post post = new Post();

@@ -1,6 +1,5 @@
 package ru.job4j;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import ru.job4j.configuration.HibernateConfiguration;
 import ru.job4j.model.Car;
@@ -17,7 +16,6 @@ public class HibernateCarRepositoryTest {
     HibernateCarRepository hibernateCarRepository =
             new HibernateCarRepository((HibernateCrudRepository) new HibernateConfiguration().sf());
 
-    @Disabled
     @Test
     public void whenCreateNewCar() {
         Car car = new Car();
@@ -28,7 +26,6 @@ public class HibernateCarRepositoryTest {
 
     }
 
-    @Disabled
     @Test
     public void whenUpdateCar() {
         Car car = new Car();
@@ -41,7 +38,6 @@ public class HibernateCarRepositoryTest {
 
     }
 
-    @Disabled
     @Test
     public void whenDeleteCar() {
         Car car = new Car();
@@ -54,7 +50,6 @@ public class HibernateCarRepositoryTest {
 
     }
 
-    @Disabled
     @Test
     public void whenFindAllOrderByIdCars() {
         Car car = new Car();
@@ -72,7 +67,6 @@ public class HibernateCarRepositoryTest {
 
     }
 
-    @Disabled
     @Test
     public void whenFindById() {
         Car car = new Car();

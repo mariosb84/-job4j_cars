@@ -1,6 +1,5 @@
 package ru.job4j;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import ru.job4j.configuration.HibernateConfiguration;
 import ru.job4j.model.Engine;
@@ -17,7 +16,6 @@ public class HibernateEngineRepositoryTest {
     HibernateEngineRepository hibernateEngineRepository =
             new HibernateEngineRepository((HibernateCrudRepository) new HibernateConfiguration().sf());
 
-    @Disabled
     @Test
     public void whenCreateNewEngine() {
         Engine engine = new Engine();
@@ -28,7 +26,6 @@ public class HibernateEngineRepositoryTest {
 
     }
 
-    @Disabled
     @Test
     public void whenUpdateEngine() {
         Engine engine = new Engine();
@@ -41,7 +38,6 @@ public class HibernateEngineRepositoryTest {
 
     }
 
-    @Disabled
     @Test
     public void whenDeleteEngine() {
         Engine engine = new Engine();
@@ -54,7 +50,6 @@ public class HibernateEngineRepositoryTest {
 
     }
 
-    @Disabled
     @Test
     public void whenFindAllOrderByIdEngines() {
         Engine engine = new Engine();
@@ -72,7 +67,6 @@ public class HibernateEngineRepositoryTest {
 
     }
 
-    @Disabled
     @Test
     public void whenFindById() {
         Engine engine = new Engine();

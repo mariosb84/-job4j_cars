@@ -1,6 +1,5 @@
 package ru.job4j;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import ru.job4j.configuration.HibernateConfiguration;
 import ru.job4j.model.User;
@@ -17,7 +16,6 @@ public class HibernateUserRepositoryTest {
     HibernateUserRepository hibernateUserRepository =
             new HibernateUserRepository((HibernateCrudRepository) new HibernateConfiguration().sf());
 
-    @Disabled
     @Test
     public void whenCreateNewUser() {
         User user = new User();
@@ -28,7 +26,6 @@ public class HibernateUserRepositoryTest {
 
     }
 
-    @Disabled
     @Test
     public void whenUpdateUser() {
         User user = new User();
@@ -41,7 +38,6 @@ public class HibernateUserRepositoryTest {
 
     }
 
-    @Disabled
     @Test
     public void whenDeleteUser() {
         User user = new User();
@@ -54,7 +50,6 @@ public class HibernateUserRepositoryTest {
 
     }
 
-    @Disabled
     @Test
     public void whenFindAllOrderByIdUsers() {
         User user = new User();
@@ -72,7 +67,6 @@ public class HibernateUserRepositoryTest {
 
     }
 
-    @Disabled
     @Test
     public void whenFindById() {
         User user = new User();
@@ -83,7 +77,6 @@ public class HibernateUserRepositoryTest {
 
     }
 
-    @Disabled
     @Test
     public void whenFindByLikeLoginUsers() {
         User user = new User();
@@ -98,7 +91,6 @@ public class HibernateUserRepositoryTest {
 
     }
 
-    @Disabled
     @Test
     public void whenFindByLogin() {
         User user = new User();
